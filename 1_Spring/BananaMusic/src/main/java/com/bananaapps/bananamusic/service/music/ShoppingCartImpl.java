@@ -79,7 +79,7 @@ public class ShoppingCartImpl implements ShoppingCart {
             PurchaseOrder purchase = new PurchaseOrder(null, 1, LocalDate.of(2024, 1, 28), currentUser, items);
 
             for (PurchaseOrderLineSong item : items) {
-                item.setOrder(purchase);
+//                item.setOrder(purchase);
             }
 
             if(purchase.isValid()) {

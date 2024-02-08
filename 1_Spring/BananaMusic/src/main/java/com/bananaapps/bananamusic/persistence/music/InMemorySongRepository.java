@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 
 import com.bananaapps.bananamusic.domain.music.SongCategory;
 import com.bananaapps.bananamusic.domain.music.Song;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class InMemorySongRepository implements SongRepository {
 
     private List<Song> catalogData = new ArrayList<>(Arrays.asList(
