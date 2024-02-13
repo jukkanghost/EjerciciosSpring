@@ -6,6 +6,10 @@ import com.bananaapps.bananamusic.domain.music.Song;
 import com.bananaapps.bananamusic.domain.user.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.ContextConfiguration;
+import com.bananaapps.bananamusic.config.SpringConfig;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -15,6 +19,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {SpringConfig.class})
 class PurchaseOrderRepositoryTest {
 
     @Autowired
