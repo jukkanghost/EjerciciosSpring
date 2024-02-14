@@ -1,14 +1,16 @@
 package com.bananaapps.bananamusic.persistence.music;
 
+import com.bananaapps.bananamusic.domain.music.Song;
+import com.bananaapps.bananamusic.domain.music.SongCategory;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
+
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.bananaapps.bananamusic.domain.music.SongCategory;
-import com.bananaapps.bananamusic.domain.music.Song;
-import org.springframework.stereotype.Repository;
-
 @Repository
+@Profile("dev")
 public class InMemorySongRepository implements SongRepository {
 
     private List<Song> catalogData = new ArrayList<>(Arrays.asList(

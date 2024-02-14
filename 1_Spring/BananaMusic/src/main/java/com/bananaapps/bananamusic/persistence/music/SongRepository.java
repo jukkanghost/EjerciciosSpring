@@ -2,9 +2,10 @@ package com.bananaapps.bananamusic.persistence.music;
 
 import com.bananaapps.bananamusic.domain.music.Song;
 import com.bananaapps.bananamusic.domain.music.SongCategory;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-
+@Repository
 public interface SongRepository {
 
     public Song findOne(Long id);

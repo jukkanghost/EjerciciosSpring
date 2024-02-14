@@ -3,12 +3,14 @@ package com.bananaapps.bananamusic.persistence.music;
 import com.bananaapps.bananamusic.domain.music.PurchaseOrder;
 import com.bananaapps.bananamusic.domain.music.PurchaseOrderLineSong;
 import com.bananaapps.bananamusic.domain.user.User;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.*;
 
 @Repository
+@Profile("dev")
 public class InMemoryPurchaseOrderRepository implements PurchaseOrderRepository {
     private Set<PurchaseOrder> orders = new HashSet<>(Arrays.asList(
             new PurchaseOrder(1L, 1, true, LocalDate.now(), new User(1), List.of(new PurchaseOrderLineSong()))

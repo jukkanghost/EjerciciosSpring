@@ -24,6 +24,7 @@ public class PurchaseOrder {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @ToString.Exclude
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PurchaseOrderLineSong> lineSongs;
 
