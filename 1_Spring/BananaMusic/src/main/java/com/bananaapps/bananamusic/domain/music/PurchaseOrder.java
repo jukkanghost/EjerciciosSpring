@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "purchase_order")
 public class PurchaseOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
