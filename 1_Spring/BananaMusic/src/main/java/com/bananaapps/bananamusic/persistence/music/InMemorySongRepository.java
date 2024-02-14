@@ -48,7 +48,7 @@ public class InMemorySongRepository implements SongRepository {
                 .filter(song -> song.getId().equals(id))
                 .findAny();
 
-        return songOptional.get();
+        return songOptional.orElse(null);
     }
 
     @Override
