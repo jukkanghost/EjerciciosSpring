@@ -2,7 +2,6 @@ package com.bananaapps.bananamusic.persistence.music;
 
 import com.bananaapps.bananamusic.domain.music.Song;
 import com.bananaapps.bananamusic.domain.music.SongCategory;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -13,7 +12,6 @@ import javax.transaction.Transactional;
 import java.util.Collection;
 
 @Repository
-@Profile("prod")
 public class SongJpaRepository implements SongRepository{
 
     @PersistenceContext
