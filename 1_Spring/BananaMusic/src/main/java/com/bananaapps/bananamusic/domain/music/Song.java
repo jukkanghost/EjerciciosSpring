@@ -18,6 +18,7 @@ import java.util.Objects;
 @ToString
 @Entity
 @Table(name = "tune")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

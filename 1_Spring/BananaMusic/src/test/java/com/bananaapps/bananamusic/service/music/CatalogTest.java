@@ -14,6 +14,7 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 public class CatalogTest {
 
     @Autowired
