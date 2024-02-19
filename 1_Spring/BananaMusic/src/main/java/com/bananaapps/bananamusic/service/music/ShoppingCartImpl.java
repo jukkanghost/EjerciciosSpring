@@ -6,6 +6,7 @@ import com.bananaapps.bananamusic.domain.user.User;
 import com.bananaapps.bananamusic.exception.SongNotfoundException;
 import com.bananaapps.bananamusic.exception.UserNotfoundException;
 import com.bananaapps.bananamusic.persistence.UserRepository;
+import com.bananaapps.bananamusic.persistence.music.PurchaseOrderJpaRepository;
 import com.bananaapps.bananamusic.persistence.music.PurchaseOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,7 +79,7 @@ public class ShoppingCartImpl implements ShoppingCart {
             PurchaseOrder purchase = new PurchaseOrder(null, 1, LocalDate.of(2024, 1, 28), currentUser, items);
 
             for (PurchaseOrderLineSong item : items) {
-//                item.setOrder(purchase);
+                item.setOrder(purchase);
             }
 
             if(purchase.isValid()) {

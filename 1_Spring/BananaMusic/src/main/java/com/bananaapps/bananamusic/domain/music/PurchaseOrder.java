@@ -25,7 +25,7 @@ public class PurchaseOrder {
     @JoinColumn(name = "user_id")
     private User user;
     @ToString.Exclude
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<PurchaseOrderLineSong> lineSongs;
 
 

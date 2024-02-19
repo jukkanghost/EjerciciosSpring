@@ -7,6 +7,8 @@ import com.bananaapps.bananamusic.service.music.Catalog;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.Collection;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles({"dev"})
 public class CatalogTest {
 
     @Autowired
@@ -36,7 +39,7 @@ public class CatalogTest {
 			cat.save(null);
 			fail("Exception not thrown");
 		}
-		catch (IllegalArgumentException iae) {
+		catch (InvalidDataAccessApiUsageException iae) {
 			assertTrue(iae.getMessage().endsWith(expectedExceptionEndString));
 		}
 	}
@@ -56,7 +59,7 @@ public class CatalogTest {
 			cat.saveCollection(grabBatch());
 			fail("Exception not thrown");
 		}
-		catch (IllegalArgumentException iae) {
+		catch (InvalidDataAccessApiUsageException iae) {
 			assertTrue(iae.getMessage().endsWith(expectedExceptionEndString));
 		}
 	}
