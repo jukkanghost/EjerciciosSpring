@@ -24,9 +24,27 @@ public class ShoppingCartController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getItemCount());
     }
 
+    @GetMapping("/buy")
+    public ResponseEntity<Object> buy() {
+        service.buy();
+        return ResponseEntity.status(HttpStatus.OK).body("Compra realizada");
+    }
+
+    @GetMapping("/empty")
+    public ResponseEntity<Object> empty() {
+        service.empty();
+        return ResponseEntity.status(HttpStatus.OK).body("Carrito vaciado");
+    }
+
     @PostMapping("/item")
     public ResponseEntity<Object> addItem(@RequestBody PurchaseOrderLineSong item) {
         service.addItem(item);
         return ResponseEntity.status(HttpStatus.CREATED).body("Operacion exitosa: item añadido");
+    }
+
+    @DeleteMapping("/item/{id}")
+    public ResponseEntity<Object> removeItem(@PathVariable Long id){
+        service.removeItem(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Operacion exitosa: item eliminado");
     }
 }
