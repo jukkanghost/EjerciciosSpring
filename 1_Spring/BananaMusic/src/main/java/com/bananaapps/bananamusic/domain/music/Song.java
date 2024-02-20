@@ -1,5 +1,6 @@
 package com.bananaapps.bananamusic.domain.music;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,7 +31,8 @@ public class Song {
     @Enumerated(EnumType.STRING)
     private SongCategory songCategory;
     private int version;
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Collection<Backlog> backlogRecords = new ArrayList<Backlog>();
 
     public void addBacklogRecord(String location, int quantity) {

@@ -26,16 +26,16 @@ public class SongJpaRepository implements SongRepository{
     @Override
     @Transactional
     public Collection<Song> findAll() {
-        TypedQuery<Song> q = em.createQuery("SELECT s FROM Song", Song.class);
+        TypedQuery<Song> q = em.createQuery("SELECT s FROM Song s", Song.class);
         return q.getResultList();
     }
 
     @Override
     @Transactional
     public Collection<Song> findByArtistContainingOrTitleContainingAllIgnoreCase(String artist, String title) {
-        TypedQuery<Song> q = em.createQuery("SELECT s FROM Song s WHERE s.artist LIKE CONCAT('%',:artist,'%') OR s.title LIKE CONCAT('%',:title,'%')", Song.class);
-        q.setParameter("artist", artist);
-        q.setParameter("title", title);
+        TypedQuery<Song> q = em.createQuery("SELECT s FROM Song s WHERE s.artist LIKE CONCAT('%',?1,'%') OR s.title LIKE CONCAT('%',?2,'%')", Song.class);
+        q.setParameter(1, artist);
+        q.setParameter(2, title);
         return q.getResultList();
     }
 

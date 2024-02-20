@@ -17,7 +17,7 @@ public class CatalogController {
     private CatalogImpl service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Object> getOne(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> getSongById(@PathVariable("id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
     }
 
@@ -32,9 +32,8 @@ public class CatalogController {
     }
 
     @PostMapping(value = "")
-    public ResponseEntity<Object> save(@RequestBody Song song) {
-        service.save(song);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Object> createSong(@RequestBody Song newSong) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(newSong));
     }
 
     @PostMapping(value = "/saveAll")

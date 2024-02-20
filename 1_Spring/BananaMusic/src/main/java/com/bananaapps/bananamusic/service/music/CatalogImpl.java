@@ -21,6 +21,11 @@ public class CatalogImpl implements Catalog {
     @Autowired
     private SongRepository songRepository;
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public Collection<Song> findAll() {
+        return songRepository.findAll();
+    }
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public Song findById(Long id) {
@@ -41,8 +46,9 @@ public class CatalogImpl implements Catalog {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void save(Song song) {
+    public Song save(Song song) {
         songRepository.save(song);
+        return song;
     }
 
     @Override
