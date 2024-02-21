@@ -70,7 +70,12 @@ spring:
     root: INFO
 
 server:
-  port: 8080
+  port: 443
+  ssl:
+      key-store: keystore2.p12
+      key-store-password: ejerciciospring
+      keyStoreType: PKCS12
+      keyAlias: tomcat
 
 logging:
   level:
