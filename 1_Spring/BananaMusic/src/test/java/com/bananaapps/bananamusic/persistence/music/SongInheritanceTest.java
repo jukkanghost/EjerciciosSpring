@@ -4,6 +4,7 @@ import com.bananaapps.bananamusic.domain.music.OfflineSong;
 import com.bananaapps.bananamusic.domain.music.Song;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -12,6 +13,7 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SpringBootTest
 public class SongInheritanceTest {
 
 	@Autowired

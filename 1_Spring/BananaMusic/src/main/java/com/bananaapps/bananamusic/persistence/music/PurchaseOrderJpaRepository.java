@@ -12,7 +12,6 @@ public interface PurchaseOrderJpaRepository extends JpaRepository<PurchaseOrder,
 
     public default List<PurchaseOrder> findAll(){
         return findAll();
-
     }
 
     public default PurchaseOrder save(PurchaseOrder order){

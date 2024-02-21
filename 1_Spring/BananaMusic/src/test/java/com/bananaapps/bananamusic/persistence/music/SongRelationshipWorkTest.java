@@ -4,6 +4,7 @@ import com.bananaapps.bananamusic.domain.music.Backlog;
 import com.bananaapps.bananamusic.domain.music.Song;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -13,6 +14,7 @@ import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+@SpringBootTest
 public class SongRelationshipWorkTest {
 
 	@Autowired
@@ -46,7 +48,7 @@ public class SongRelationshipWorkTest {
 	}
 
 	// ****  Test to be run without cascading set	
-	// @Test
+	 @Test
 	public void testInventoryUpdateNoCascadePositive() {
 		DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
 		TransactionStatus transaction = transactionManager.getTransaction(definition);
@@ -88,7 +90,7 @@ public class SongRelationshipWorkTest {
 	}	
 
 	// **** Test to be run WITHOUT orphan removal
-	// @Test
+	 @Test
 	public void testRemoveNoOrphanRemovalNegative() {
 		DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
 		TransactionStatus transaction = transactionManager.getTransaction(definition);
@@ -125,7 +127,7 @@ public class SongRelationshipWorkTest {
 	}	
 
 	// **** Test to be run WITH orphan removal
-	// @Test
+	 @Test
 	public void testRemoveWithOrphanRemovalPositive() {
 		DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
 		TransactionStatus transaction = transactionManager.getTransaction(definition);
@@ -178,7 +180,7 @@ public class SongRelationshipWorkTest {
 
 	
 	@Test
-	// @Test(expected = LazyInitializationException.class)
+//	 @Test(expected = LazyInitializationException.class)
 	public void testLazyFetchNegative() {
 		DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
 		TransactionStatus transaction = transactionManager.getTransaction(definition);

@@ -19,6 +19,7 @@ public class PurchaseOrderLineSong {
     @OneToOne
     @JoinColumn(name = "song_id")
     private Song song;
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     private PurchaseOrder order;

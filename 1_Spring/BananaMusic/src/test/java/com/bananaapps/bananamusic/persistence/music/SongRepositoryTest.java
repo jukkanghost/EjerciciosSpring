@@ -5,7 +5,11 @@ import com.bananaapps.bananamusic.domain.music.SongCategory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -16,11 +20,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@DataJpaTest()
+@ComponentScan(basePackages = {"com.bananaapps.bananamusic.persistence"})
+@AutoConfigureTestEntityManager
 class SongRepositoryTest {
+
     @Autowired
-    SongRepository repo;
+    private TestEntityManager entityManager;
+    @Autowired
+    private SongRepository repo;
 
     @Test
     void given_validId_When_findOne_Then_returnASong() {
@@ -39,8 +48,13 @@ class SongRepositoryTest {
 
     @Test
     void given_validKeyword_When_findByKeyword_Then_validCollection() {
+        // given
         String keyword = "a";
+
+        // when
         Collection<Song> songs = repo.findByKeyword(keyword);
+
+        // then
         assertThat(songs, notNullValue());
         assertThat(songs.size(), greaterThan(0));
     }
@@ -55,9 +69,13 @@ class SongRepositoryTest {
 
     @Test
     void given_validSong_When_save_Then_Ok() {
+        // given
         Song newSong = new Song("Mamma mia", "ABBA", "1999-04-30", new BigDecimal(18.0), SongCategory.POP);
 
+        // when
         Song savedSong = repo.save(newSong);
+
+        // then
         assertThat(savedSong, notNullValue());
         assertThat(savedSong.getId(), greaterThan(0L));
     }

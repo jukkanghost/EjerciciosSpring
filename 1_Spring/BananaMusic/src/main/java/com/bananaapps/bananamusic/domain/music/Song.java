@@ -34,6 +34,7 @@ public class Song {
     private SongCategory songCategory;
     private int version;
     @JsonIgnore
+    @ToString.Exclude
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Collection<Backlog> backlogRecords = new ArrayList<Backlog>();
 

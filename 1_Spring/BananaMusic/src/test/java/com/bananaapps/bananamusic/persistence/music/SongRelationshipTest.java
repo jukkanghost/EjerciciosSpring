@@ -4,6 +4,7 @@ import com.bananaapps.bananamusic.domain.music.Backlog;
 import com.bananaapps.bananamusic.domain.music.Song;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -12,7 +13,7 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+@SpringBootTest
 public class SongRelationshipTest {
 
     @Autowired
@@ -21,7 +22,7 @@ public class SongRelationshipTest {
     @Autowired
     private PlatformTransactionManager transactionManager;
 
-    // @Test
+     @Test
     public void testBacklogAccessPositive() {
         DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
         TransactionStatus transaction = transactionManager.getTransaction(definition);

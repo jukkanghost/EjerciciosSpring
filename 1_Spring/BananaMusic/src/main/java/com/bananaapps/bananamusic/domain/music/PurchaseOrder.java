@@ -1,6 +1,7 @@
 package com.bananaapps.bananamusic.domain.music;
 
 import com.bananaapps.bananamusic.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class PurchaseOrder {
     @JoinColumn(name = "user_id")
     private User user;
     @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<PurchaseOrderLineSong> lineSongs;
 

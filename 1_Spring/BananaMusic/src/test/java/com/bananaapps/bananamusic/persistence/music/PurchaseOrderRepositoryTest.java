@@ -7,7 +7,11 @@ import com.bananaapps.bananamusic.domain.user.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -19,9 +23,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@DataJpaTest()
+@ComponentScan(basePackages = {"com.bananaapps.bananamusic.persistence"})
+@AutoConfigureTestEntityManager
 class PurchaseOrderRepositoryTest {
 
+    @Autowired
+    private TestEntityManager entityManager;
     @Autowired
     PurchaseOrderRepository repo;
 
@@ -35,7 +44,17 @@ class PurchaseOrderRepositoryTest {
 
     @Test
     void given_orders_WHEN_findAll_Then_list() {
+        // given
+        User user = new User(1);
+
+        PurchaseOrder order = new PurchaseOrder(null, 1, LocalDate.now(), user, null);
+        entityManager.persist(order);
+        entityManager.flush();
+
+        // when
         Collection orders = repo.findAll();
+
+        // then
         assertThat(orders, notNullValue());
         assertThat(orders.size(), greaterThan(0));
     }
