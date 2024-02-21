@@ -5,10 +5,15 @@ import com.bananaapps.bananamusic.service.music.ShoppingCartImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 @RestController
 @RequestMapping("/cart")
+@Validated
 public class ShoppingCartController {
 
     @Autowired
@@ -37,13 +42,13 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/item")
-    public ResponseEntity<Object> addItem(@RequestBody PurchaseOrderLineSong item) {
+    public ResponseEntity<Object> addItem(@RequestBody @Valid PurchaseOrderLineSong item) {
         service.addItem(item);
         return ResponseEntity.status(HttpStatus.CREATED).body("Operacion exitosa: item añadido");
     }
 
     @DeleteMapping("/item/{id}")
-    public ResponseEntity<Object> removeItem(@PathVariable Long id){
+    public ResponseEntity<Object> removeItem(@PathVariable @Min(1) Long id){
         service.removeItem(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Operacion exitosa: item eliminado");
     }

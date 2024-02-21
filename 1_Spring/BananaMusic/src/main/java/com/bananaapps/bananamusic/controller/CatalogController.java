@@ -12,8 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @RestController
@@ -33,7 +35,6 @@ public class CatalogController {
     @Operation(summary = "Busca en el catalogo filtrando por keyword", description = "Devuelve todo el catalogo, pudidendo filtrar por keyword, en distintos formatos")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Cuando hay catalogo a devolver."),
-//            @ApiResponse(responseCode = "404", description = "Cuando no hay productos a devolver.")
     })
     @GetMapping(value = "")
     public ResponseEntity<Object> get(@RequestParam(required = false, defaultValue = "") String keyword) {
@@ -46,12 +47,12 @@ public class CatalogController {
     }
 
     @PostMapping(value = "")
-    public ResponseEntity<Object> createSong(@RequestBody Song newSong) {
+    public ResponseEntity<Object> createSong(@RequestBody @Valid Song newSong) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(newSong));
     }
 
     @PostMapping(value = "/saveAll")
-    public ResponseEntity<Object> save(@RequestBody Collection<Song> songs) {
+    public ResponseEntity<Object> save(@RequestBody @Valid Collection<Song> songs) {
         service.saveCollection(songs);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
